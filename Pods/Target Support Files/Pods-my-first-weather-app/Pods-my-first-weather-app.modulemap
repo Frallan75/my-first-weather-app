@@ -1,0 +1,6 @@
+framework module Pods_my_first_weather_app {
+  umbrella header "Pods-my-first-weather-app-umbrella.h"
+
+  export *
+  module * { export * }
+}
