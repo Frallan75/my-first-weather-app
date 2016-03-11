@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 
-class DetailCityWeatherVC: UIViewController {
+class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var iconContainerView: UIView!
     @IBOutlet weak var cityNameLbl: UILabel!
@@ -26,15 +26,24 @@ class DetailCityWeatherVC: UIViewController {
     
     var detailCity = CityWeather()
     var urlViewer = WKWebView()
-    
     var id: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupSwipe()
         setupWKWebViewer()
         fetchDetails(id)
      
+    }
+    
+    func setupSwipe() {
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "dismissView")
+        
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        
+        view.addGestureRecognizer(swipeRight)
     }
     
     func fetchDetails(id: Int) {
@@ -66,5 +75,9 @@ class DetailCityWeatherVC: UIViewController {
         let nsUrl = NSURL(string: url)!
         let requestForIcon = NSURLRequest(URL: nsUrl)
         self.urlViewer.loadRequest(requestForIcon)
+    }
+    
+    func dismissView() {
+        navigationController?.popViewControllerAnimated(true)
     }
 }

@@ -28,7 +28,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kkH-JN-858">
                                         <rect key="frame" x="8" y="68" width="584" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKd-eu-rba">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKd-eu-rba">
                                                 <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
                                                 <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="23"/>
                                                 <state key="normal" title="New Search">
@@ -57,20 +57,6 @@
                                 <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVo-wR-0hI">
-                                <rect key="frame" x="204" y="352" width="193" height="152"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="152" id="7aI-jg-qc4"/>
-                                    <constraint firstAttribute="width" constant="193" id="BX1-25-Gqs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="80"/>
-                                <state key="normal" title="GO!">
-                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="goButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cgL-NJ-eKn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -83,16 +69,13 @@
                             <constraint firstAttribute="trailing" secondItem="9wo-IF-NS9" secondAttribute="trailing" constant="40" id="RB9-cB-eJV"/>
                             <constraint firstItem="vuh-a4-lg2" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="YRP-Vc-Knz"/>
                             <constraint firstAttribute="trailing" secondItem="vuh-a4-lg2" secondAttribute="trailing" id="adg-1v-Rhp"/>
-                            <constraint firstItem="IVo-wR-0hI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="em1-zz-6Jl"/>
                             <constraint firstItem="vuh-a4-lg2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mep-dE-xHy"/>
-                            <constraint firstItem="IVo-wR-0hI" firstAttribute="top" secondItem="9wo-IF-NS9" secondAttribute="bottom" constant="27" id="nRY-tY-3lH"/>
                             <constraint firstItem="GiB-Fs-D2W" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="tFP-q5-zZX"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GiB-Fs-D2W" secondAttribute="bottom" id="uUj-Dd-v0k"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bx2-XF-hX6"/>
                     <connections>
-                        <outlet property="goButton" destination="IVo-wR-0hI" id="g4F-Lw-pPm"/>
                         <outlet property="newSearchButton" destination="cKd-eu-rba" id="llY-ax-qdh"/>
                         <outlet property="searchTxtFeild" destination="9wo-IF-NS9" id="JVx-Vk-Bdl"/>
                         <outlet property="tableView" destination="BKd-5x-cTx" id="EWV-Eo-KVZ"/>
@@ -122,10 +105,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dra-Zh-s7x">
-                                        <rect key="frame" x="552" y="-1" width="40" height="43.5"/>
+                                        <rect key="frame" x="532" y="-1" width="60" height="43.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43.5" id="Vgy-9n-udu"/>
-                                            <constraint firstAttribute="width" constant="40" id="oe6-0f-Xzg"/>
+                                            <constraint firstAttribute="width" constant="60" id="oe6-0f-Xzg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="22"/>
                                         <color key="textColor" red="1" green="0.21960784310000001" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>

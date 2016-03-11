@@ -107,11 +107,13 @@ class CityWeather {
     
     func searchCity(citySearchString: String, completion: () -> ()) {
         
+        self._sunrise = nil
+        
         let session = NSURLSession.sharedSession()
         
-        let url = "\(BASE_URL_FIND)\(citySearchString)\(URL_TEST_APPID)"
-        
-        print(url)
+        let rawUrl = "\(BASE_URL_FIND)\(citySearchString)\(URL_TEST_APPID)"
+    
+        let url = rawUrl.stringByFoldingWithOptions(.DiacriticInsensitiveSearch, locale: NSLocale.currentLocale())
         
         let nsUrl = NSURL(string: url)!
         
@@ -120,7 +122,7 @@ class CityWeather {
         session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             
             if let result = data {
-                
+            
                 do {
                     let json = try NSJSONSerialization.JSONObjectWithData(result, options: NSJSONReadingOptions.AllowFragments)
                     
@@ -128,40 +130,51 @@ class CityWeather {
                         
                         print("in json")
                         
-                        if let list = dict["list"] as? [Dictionary<String, AnyObject>] where list.count > 0 {
+                        if let count = dict["count"] as? Int where count > 0 {
+                            print("detta är count \(count)")
+                            self._sunrise = 1
+                            print(self._sunrise)
                             
-                            print("in list")
-                            print(list.count)
-                            
-                            for var x = 0; x < list.count; x++ {
+                            if let list = dict["list"] as? [Dictionary<String, AnyObject>] where list.count > 0 {
                                 
-                                if let cityName = list[x]["name"] as? String {
-                                    
-                                    self.searchArrayCity.append(cityName)
-                                }
+                                print("in list")
+                                print(list.count)
                                 
-                                if let id = list[x]["id"] as? Int {
+                                for var x = 0; x < list.count; x++ {
                                     
-                                    self.searchArrayId.append(id)
-                                }
-                                
-                                if let sys = list[x]["sys"] as? Dictionary<String, AnyObject> {
-                                    
-                                    if let country = sys["country"] as? String {
+                                    if let cityName = list[x]["name"] as? String {
                                         
-                                        self.searchArrayCountry.append(country)
+                                        self.searchArrayCity.append(cityName)
+                                    }
+                                    
+                                    if let id = list[x]["id"] as? Int {
+                                        
+                                        self.searchArrayId.append(id)
+                                    }
+                                    
+                                    if let sys = list[x]["sys"] as? Dictionary<String, AnyObject> {
+                                        
+                                        if let country = sys["country"] as? String {
+                                            
+                                            self.searchArrayCountry.append(country)
+                                        }
                                     }
                                 }
                             }
+                          
                         }
-                        completion()
+                        else {
+                            print("in else hansli")
+                            self._sunrise = 0
+                        }
                     }
-                    
-                } catch let err as NSError {
-                    print(err.debugDescription)
+                      completion()
+                } catch {
+                     self._sunrise = 0
                 }
+                
             }
-        }.resume()
+            }.resume()
     }
     
     func detailWeather(id: Int, completion: () -> ()) {
@@ -239,6 +252,6 @@ class CityWeather {
                     print(err.debugDescription)
                 }
             }
-        }.resume()
+            }.resume()
     }
 }

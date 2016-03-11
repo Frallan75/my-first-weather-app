@@ -81,6 +81,7 @@
 				BA9027B01C90B0B8006E7E01 /* Model */,
 				BA9027AF1C90B089006E7E01 /* View */,
 				BA9027AE1C90B07B006E7E01 /* Controller */,
+				BACA4D331C92A5D700F278B0 /* Utils */,
 				BA9027AB1C90AED8006E7E01 /* Resources */,
 				BA9027991C90ACC3006E7E01 /* AppDelegate.swift */,
 				BA9027A01C90ACC3006E7E01 /* Assets.xcassets */,
@@ -122,6 +123,13 @@
 				BA9027B11C90B0CB006E7E01 /* CityWeather.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		BACA4D331C92A5D700F278B0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		C0019E51ADFD56F77AB7BD47 /* Frameworks */ = {

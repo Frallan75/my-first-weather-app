@@ -13,70 +13,45 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTxtFeild: UITextField!
     @IBOutlet weak var newSearchButton: UIButton!
-    @IBOutlet weak var goButton: UIButton!
     
-    
-    var city: CityWeather!
+    var city = CityWeather()
     var numberOfRows: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBarHidden = true
         
         view.addSubview(tableView)
         
         tableView.dataSource = self
         tableView.delegate = self
         searchTxtFeild.delegate = self
-
-        city = CityWeather()
+        
+        newSearchButton.hidden = true
+        
+        searchTxtFeild.returnKeyType = UIReturnKeyType.Go
+        searchTxtFeild.autocorrectionType = .No
+        searchTxtFeild.keyboardType = .ASCIICapable
         
         tableView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y + view.frame.size.height, view.frame.size.width, view.frame.height * 0.8)
 
-        goButton.enabled = true
-        goButton.layer.cornerRadius = 5
-        goButton.layer.borderWidth = 1
-        goButton.layer.borderColor = UIColor.grayColor().CGColor
-        
-        newSearchButton.hidden = true
-        newSearchButton.layer.cornerRadius = 5
-        newSearchButton.layer.borderWidth = 1
-        newSearchButton.layer.borderColor = UIColor.grayColor().CGColor
-        
-        searchTxtFeild.returnKeyType = UIReturnKeyType.Go
-        
-        
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        
-//        goButton.enabled = false
-//        newSearchButton.enabled = true
-    }
-
-    @IBAction func goButtonPressed(sender: UIButton) {
-        
-        fetchSearch()
     }
     
     @IBAction func newSearchButtonPressed(sender: UIButton) {
         
         dismissView()
         searchTxtFeild.text = ""
-        switchButtonEnable()
+        newSearchButtonSwitch()
     }
     
-    
-    func switchButtonEnable() {
-        if goButton.enabled == true {
-            goButton.enabled = false
-            goButton.alpha = 0.3
+    func newSearchButtonSwitch() {
+        print("in newButtin")
+        if newSearchButton.hidden {
+            print("in unhide")
             newSearchButton.hidden = false
         }
-        else {
-            goButton.enabled = true
-            goButton.alpha = 1.0
-            newSearchButton.hidden = true
-        }
+        newSearchButton.hidden = true
     }
     
     func fetchSearch() {
@@ -87,21 +62,34 @@ class ViewController: UIViewController {
         
         tableView.reloadData()
 
-        
         if searchTxtFeild.isFirstResponder() && searchTxtFeild.text != nil && searchTxtFeild.text != "" {
             
             if let searchText = searchTxtFeild.text {
-                city.searchCity(searchText) { () -> () in
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
+                
+                let trimmedSearchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "")
+                let removedInappropiateChar = trimmedSearchText.stringByFoldingWithOptions(.DiacriticInsensitiveSearch, locale: NSLocale.currentLocale())
+                
+                print(removedInappropiateChar)
+                
+                city.searchCity(trimmedSearchText) { () -> () in
+                    print(self.city.sunrise)
+                    if self.city.sunrise != 0 {
                         
-                        self.numberOfRows = self.city.searchArrayCity.count
-                        self.tableView.reloadData()
+                        dispatch_async(dispatch_get_main_queue()) {
+                            print("in dispatch row 1")
+                            self.numberOfRows = self.city.searchArrayCity.count
+                            print(self.city.searchArrayCity[0])
+                            self.tableView.reloadData()
+                            self.showView()
+                        }
+                    } else {
+                        
+                        self.presentAlert()
                     }
+                    
                 }
             }
-            showView()
-            switchButtonEnable()
+           
         }
 
     }
@@ -118,7 +106,7 @@ class ViewController: UIViewController {
     func showView() {
         
         let viewToShow = self.tableView
-        
+        print("in show view")
         UIView.animateWithDuration(0.6) {
             viewToShow.frame = CGRectMake(viewToShow.frame.origin.x, viewToShow.frame.origin.y - viewToShow.frame.height, viewToShow.frame.size.width, viewToShow.frame.size.height)
         }
@@ -126,14 +114,23 @@ class ViewController: UIViewController {
     }
     
     func dismissView() {
-        
+        print("in dismissview")
         let viewToDismiss = self.tableView
         
         UIView.animateWithDuration(0.6) {
             viewToDismiss.frame = CGRectMake(viewToDismiss.frame.origin.x, viewToDismiss.frame.origin.y + viewToDismiss.frame.height, viewToDismiss.frame.size.width, viewToDismiss.frame.size.height)
         }
-
+    }
+    
+    func presentAlert() {
         
+        let myAlert = UIAlertController(title: "Ooooops!", message: "The server coudn't find your city, please try again!", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        myAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        
+        presentViewController(myAlert, animated: true) { () -> Void in
+            self.searchTxtFeild.text = ""
+        }
     }
 }
 
@@ -173,13 +170,11 @@ extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
+        newSearchButton.hidden = false
         fetchSearch()
-        
         self.view.endEditing(true)
         
         return false
     }
-    
-    
 }
 
