@@ -19,37 +19,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sun-in-the-sky-2" translatesAutoresizingMaskIntoConstraints="NO" id="GiB-Fs-D2W">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-start" translatesAutoresizingMaskIntoConstraints="NO" id="GiB-Fs-D2W">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuh-a4-lg2">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kkH-JN-858">
-                                        <rect key="frame" x="8" y="68" width="584" height="44"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKd-eu-rba">
-                                                <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
-                                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="23"/>
-                                                <state key="normal" title="New Search">
-                                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="newSearchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SUf-23-YuL"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="kkH-JN-858" secondAttribute="trailing" id="3QJ-8I-dw1"/>
-                                    <constraint firstItem="kkH-JN-858" firstAttribute="top" secondItem="vuh-a4-lg2" secondAttribute="topMargin" constant="60" id="EWw-XW-8FZ"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="kkH-JN-858" secondAttribute="bottom" id="RE8-wE-Pic"/>
-                                    <constraint firstItem="kkH-JN-858" firstAttribute="leading" secondItem="vuh-a4-lg2" secondAttribute="leadingMargin" id="kD6-6x-utA"/>
-                                </constraints>
-                            </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search your City here!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wo-IF-NS9">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City name here!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wo-IF-NS9">
                                 <rect key="frame" x="40" y="275" width="520" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ma1-cR-UwV"/>
@@ -57,26 +30,31 @@
                                 <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weatherMe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWr-CC-Hk9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="70"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9wo-IF-NS9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="04I-w8-aMz"/>
                             <constraint firstItem="9wo-IF-NS9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="APU-SN-j4k"/>
-                            <constraint firstItem="vuh-a4-lg2" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="DZd-bn-NJC"/>
+                            <constraint firstItem="fWr-CC-Hk9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="B3L-9X-et3"/>
+                            <constraint firstItem="fWr-CC-Hk9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="C8E-qk-han"/>
                             <constraint firstItem="GiB-Fs-D2W" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HZR-Iy-AG1"/>
+                            <constraint firstAttribute="trailing" secondItem="fWr-CC-Hk9" secondAttribute="trailing" id="OZD-4F-NT3"/>
                             <constraint firstAttribute="trailing" secondItem="GiB-Fs-D2W" secondAttribute="trailing" id="OiX-t9-Gkx"/>
                             <constraint firstItem="9wo-IF-NS9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Owt-26-qej"/>
                             <constraint firstAttribute="trailing" secondItem="9wo-IF-NS9" secondAttribute="trailing" constant="40" id="RB9-cB-eJV"/>
-                            <constraint firstItem="vuh-a4-lg2" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="YRP-Vc-Knz"/>
-                            <constraint firstAttribute="trailing" secondItem="vuh-a4-lg2" secondAttribute="trailing" id="adg-1v-Rhp"/>
-                            <constraint firstItem="vuh-a4-lg2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mep-dE-xHy"/>
+                            <constraint firstItem="fWr-CC-Hk9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qVE-0w-ZPV"/>
                             <constraint firstItem="GiB-Fs-D2W" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="tFP-q5-zZX"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GiB-Fs-D2W" secondAttribute="bottom" id="uUj-Dd-v0k"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bx2-XF-hX6"/>
                     <connections>
-                        <outlet property="newSearchButton" destination="cKd-eu-rba" id="llY-ax-qdh"/>
                         <outlet property="searchTxtFeild" destination="9wo-IF-NS9" id="JVx-Vk-Bdl"/>
                         <outlet property="tableView" destination="BKd-5x-cTx" id="EWV-Eo-KVZ"/>
                         <segue destination="HUN-XQ-Jlk" kind="show" identifier="detailVC" id="59f-iF-InT"/>
@@ -87,9 +65,31 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="405"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="pQw-4r-MMF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cde-1K-aae">
+                                <rect key="frame" x="279" y="-2" width="42" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="ViP-Tm-1oN"/>
+                                    <constraint firstAttribute="height" constant="39" id="vuu-Of-cnP"/>
+                                </constraints>
+                                <state key="normal" image="AD"/>
+                                <connections>
+                                    <action selector="dismissViewBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ThC-Hb-emu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cde-1K-aae" firstAttribute="centerY" secondItem="pQw-4r-MMF" secondAttribute="centerY" id="W9R-iN-40F"/>
+                            <constraint firstItem="cde-1K-aae" firstAttribute="centerX" secondItem="pQw-4r-MMF" secondAttribute="centerX" id="b0y-OE-Grc"/>
+                        </constraints>
+                    </view>
                     <prototypes>
                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityCell" id="uP3-w3-6ef" customClass="CityCell" customModule="my_first_weather_app" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="63" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uP3-w3-6ef" id="t4v-yI-qFH">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -228,6 +228,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Sun-in-the-sky-2" width="1920" height="2560"/>
+        <image name="AD" width="512" height="512"/>
+        <image name="BG-start" width="1441" height="1440"/>
     </resources>
 </document>

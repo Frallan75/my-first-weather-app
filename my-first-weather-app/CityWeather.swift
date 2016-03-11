@@ -23,6 +23,7 @@ class CityWeather {
     private var _clouds: Int!
     private var _sunrise: Int!
     private var _sunset: Int!
+    private var _error: Bool!
 
     var searchArrayCity: [String] = [""]
     var searchArrayCountry: [String] = [""]
@@ -105,9 +106,13 @@ class CityWeather {
         return _sunset
     }
     
+    var error: Bool {
+        return _error
+    }
+    
     func searchCity(citySearchString: String, completion: () -> ()) {
         
-        self._sunrise = nil
+        self._error = false
         
         let session = NSURLSession.sharedSession()
         
@@ -115,7 +120,9 @@ class CityWeather {
     
         let url = rawUrl.stringByFoldingWithOptions(.DiacriticInsensitiveSearch, locale: NSLocale.currentLocale())
         
-        let nsUrl = NSURL(string: url)!
+        let readyForNSURL = url.stringByReplacingOccurrencesOfString(" ", withString: "")
+        
+        let nsUrl = NSURL(string: readyForNSURL)!
         
         let request = NSURLRequest(URL: nsUrl)
         
@@ -132,8 +139,6 @@ class CityWeather {
                         
                         if let count = dict["count"] as? Int where count > 0 {
                             print("detta är count \(count)")
-                            self._sunrise = 1
-                            print(self._sunrise)
                             
                             if let list = dict["list"] as? [Dictionary<String, AnyObject>] where list.count > 0 {
                                 
@@ -165,12 +170,12 @@ class CityWeather {
                         }
                         else {
                             print("in else hansli")
-                            self._sunrise = 0
+                            self._error = true
                         }
                     }
                       completion()
                 } catch {
-                     self._sunrise = 0
+                     self._error = true
                 }
                 
             }

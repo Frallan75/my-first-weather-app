@@ -11,17 +11,17 @@ import WebKit
 
 
 class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
-
+    
     @IBOutlet weak var iconContainerView: UIView!
     @IBOutlet weak var cityNameLbl: UILabel!
     @IBOutlet weak var countryLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var tempLbl: UILabel!
-//    @IBOutlet weak var pressLbl: UILabe§  l!
-//    @IBOutlet weak var humidityLbl: UILabel!
-//    @IBOutlet weak var cloudsLbl: UILabel!
-//    @IBOutlet weak var suriseLbl: UILabel!
-//    @IBOutlet weak var sunsetLbl: UILabel!
+    //    @IBOutlet weak var pressLbl: UILabe§  l!
+    //    @IBOutlet weak var humidityLbl: UILabel!
+    //    @IBOutlet weak var cloudsLbl: UILabel!
+    //    @IBOutlet weak var suriseLbl: UILabel!
+    //    @IBOutlet weak var sunsetLbl: UILabel!
     
     
     var detailCity = CityWeather()
@@ -34,7 +34,7 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
         setupSwipe()
         setupWKWebViewer()
         fetchDetails(id)
-     
+        
     }
     
     func setupSwipe() {
@@ -58,7 +58,6 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
                 self.showIcon()
             }
         }
-        
     }
     
     func setupWKWebViewer() {
@@ -66,7 +65,7 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
         iconContainerView.addSubview(urlViewer)
         let frame = CGRectMake(0, 0, iconContainerView.frame.width, iconContainerView.frame.height)
         urlViewer.frame = frame
-
+        
     }
     
     func showIcon() {
