@@ -104,11 +104,11 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dra-Zh-s7x">
-                                        <rect key="frame" x="532" y="-1" width="60" height="43.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UK" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dra-Zh-s7x">
+                                        <rect key="frame" x="392" y="-1" width="200" height="43.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43.5" id="Vgy-9n-udu"/>
-                                            <constraint firstAttribute="width" constant="60" id="oe6-0f-Xzg"/>
+                                            <constraint firstAttribute="width" constant="200" id="oe6-0f-Xzg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="22"/>
                                         <color key="textColor" red="1" green="0.21960784310000001" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
@@ -145,62 +145,186 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="San Francisco" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="9qH-dt-uwh">
-                                <rect key="frame" x="53" y="153" width="300" height="80"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe-map-grey" translatesAutoresizingMaskIntoConstraints="NO" id="zbH-Tb-ajB">
+                                <rect key="frame" x="267" y="44" width="65" height="62"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="HwY-Sb-vyw"/>
+                                    <constraint firstAttribute="width" constant="65" id="3Ds-pg-0qc"/>
+                                    <constraint firstAttribute="height" constant="62" id="P1l-bD-FsX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="9qH-dt-uwh">
+                                <rect key="frame" x="20" y="121" width="560" height="80"/>
+                                <constraints>
                                     <constraint firstAttribute="height" constant="80" id="sZ2-pD-J3x"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="70"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJ2-IO-2TW">
-                                <rect key="frame" x="111" y="501" width="192" height="43"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ka4-eb-fmP" userLabel="Desc Stack">
+                                <rect key="frame" x="225" y="222" width="150" height="40"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bis-ow-Lep">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <color key="backgroundColor" red="1" green="0.75579351125986638" blue="0.22793706947846759" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Eyn-IQ-jlW"/>
+                                            <constraint firstAttribute="width" constant="40" id="NyF-hL-dsT"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJ2-IO-2TW">
+                                        <rect key="frame" x="48" y="0.0" width="102" height="40"/>
+                                        <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Wcf-Ve-lPH"/>
-                                    <constraint firstAttribute="width" constant="192" id="lHP-uS-JXA"/>
+                                    <constraint firstAttribute="height" constant="40" id="iIf-rs-6Su"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bis-ow-Lep">
-                                <rect key="frame" x="53" y="498" width="50" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.75579351125986638" blue="0.22793706947846759" alpha="1" colorSpace="calibratedRGB"/>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="US" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOT-6Z-i8o">
+                                <rect key="frame" x="150" y="61" width="300" height="27"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Eyn-IQ-jlW"/>
-                                    <constraint firstAttribute="width" constant="50" id="NyF-hL-dsT"/>
+                                    <constraint firstAttribute="width" constant="300" id="9he-Eo-K2i"/>
                                 </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGT-tW-GPL">
-                                <rect key="frame" x="53" y="246" width="291" height="182"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="291" id="EjW-yd-DiG"/>
-                                    <constraint firstAttribute="height" constant="182" id="S1q-3F-0Q4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="60"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="US" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOT-6Z-i8o">
-                                <rect key="frame" x="346" y="153" width="40" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="192" id="9he-Eo-K2i"/>
-                                    <constraint firstAttribute="height" constant="44" id="CcC-rR-YkM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="22"/>
                                 <color key="textColor" red="1" green="0.21960784310000001" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="u1M-YT-rxF" userLabel="Sunset Stack">
+                                <rect key="frame" x="162" y="463" width="278" height="118"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="1BF-Nx-bWW">
+                                        <rect key="frame" x="0.0" y="0.0" width="278" height="50"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sunrise-64" translatesAutoresizingMaskIntoConstraints="NO" id="hJN-9l-bBK">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="5o7-6s-TQw"/>
+                                                    <constraint firstAttribute="width" constant="20" id="u6h-uR-q7g"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Sunrise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-du-IQu">
+                                                <rect key="frame" x="51" y="0.0" width="66" height="50"/>
+                                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="20"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Barometer-50" translatesAutoresizingMaskIntoConstraints="NO" id="Dbg-K7-bYU">
+                                                <rect key="frame" x="148" y="0.0" width="20" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="rAS-np-T3m"/>
+                                                    <constraint firstAttribute="width" constant="20" id="xyb-7g-0kp"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvq-3L-yKv">
+                                                <rect key="frame" x="199" y="0.0" width="79" height="50"/>
+                                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="20"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="zph-yP-fhf">
+                                        <rect key="frame" x="0.0" y="68" width="278" height="50"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sunset-64" translatesAutoresizingMaskIntoConstraints="NO" id="gFU-rg-Tje">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="c8a-hV-CMy"/>
+                                                    <constraint firstAttribute="height" constant="50" id="smc-az-lma"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Sunset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIK-MT-wgL">
+                                                <rect key="frame" x="51" y="0.0" width="67" height="50"/>
+                                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="20"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Humidity-50" translatesAutoresizingMaskIntoConstraints="NO" id="s2u-62-lhd">
+                                                <rect key="frame" x="149" y="0.0" width="20" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="NFA-Ps-qyN"/>
+                                                    <constraint firstAttribute="height" constant="50" id="Ylj-yh-sch"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFr-uf-Lne">
+                                                <rect key="frame" x="200" y="0.0" width="78" height="50"/>
+                                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="20"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aGT-tW-GPL">
+                                <rect key="frame" x="125" y="270" width="350" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="Jze-pe-f3g"/>
+                                    <constraint firstAttribute="height" constant="120" id="S1q-3F-0Q4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="80"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="uce-be-Hx1" userLabel="Degreees Stack">
+                                <rect key="frame" x="255" y="398" width="90" height="33"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJk-r2-IO8" userLabel="Farenheit">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="33"/>
+                                        <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="15"/>
+                                        <state key="normal" title="˚F">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tempBtnPressed:" destination="HUN-XQ-Jlk" eventType="touchUpInside" id="fOV-jw-bKs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41L-KJ-qET" userLabel="Celcius">
+                                        <rect key="frame" x="60" y="0.0" width="30" height="33"/>
+                                        <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="15"/>
+                                        <state key="normal" title="˚C">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tempBtnPressed:" destination="HUN-XQ-Jlk" eventType="touchUpInside" id="ILh-Dj-EkE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zbH-Tb-ajB" firstAttribute="centerX" secondItem="g5g-kC-hdm" secondAttribute="centerX" id="5fB-6z-JhS"/>
+                            <constraint firstItem="Ka4-eb-fmP" firstAttribute="centerX" secondItem="g5g-kC-hdm" secondAttribute="centerX" id="8x9-4f-0EY"/>
+                            <constraint firstItem="9qH-dt-uwh" firstAttribute="centerX" secondItem="g5g-kC-hdm" secondAttribute="centerX" id="AZI-2z-aoH"/>
+                            <constraint firstItem="9qH-dt-uwh" firstAttribute="leading" secondItem="g5g-kC-hdm" secondAttribute="leadingMargin" id="H9M-fo-oyk"/>
+                            <constraint firstItem="kOT-6Z-i8o" firstAttribute="centerX" secondItem="zbH-Tb-ajB" secondAttribute="centerX" id="Nei-8b-OWZ"/>
+                            <constraint firstItem="u1M-YT-rxF" firstAttribute="centerX" secondItem="g5g-kC-hdm" secondAttribute="centerX" id="QEL-T7-sFE"/>
+                            <constraint firstItem="u1M-YT-rxF" firstAttribute="top" secondItem="uce-be-Hx1" secondAttribute="bottom" constant="32" id="UIa-lp-vb1"/>
+                            <constraint firstItem="uce-be-Hx1" firstAttribute="centerX" secondItem="g5g-kC-hdm" secondAttribute="centerX" id="acw-EK-nyc"/>
+                            <constraint firstItem="aGT-tW-GPL" firstAttribute="top" secondItem="Ka4-eb-fmP" secondAttribute="bottom" constant="8" id="dGl-ax-h4l"/>
+                            <constraint firstItem="kOT-6Z-i8o" firstAttribute="centerY" secondItem="zbH-Tb-ajB" secondAttribute="centerY" id="ddD-jj-ygn"/>
+                            <constraint firstItem="uce-be-Hx1" firstAttribute="top" secondItem="aGT-tW-GPL" secondAttribute="bottom" constant="8" id="heF-6x-tqi"/>
+                            <constraint firstItem="Ka4-eb-fmP" firstAttribute="top" secondItem="9qH-dt-uwh" secondAttribute="bottom" constant="21" id="iGE-vL-1Nv"/>
+                            <constraint firstItem="zbH-Tb-ajB" firstAttribute="top" secondItem="g5g-kC-hdm" secondAttribute="topMargin" constant="44" id="sfU-5I-sEb"/>
+                            <constraint firstItem="aGT-tW-GPL" firstAttribute="centerX" secondItem="g5g-kC-hdm" secondAttribute="centerX" id="xEe-lu-RF5"/>
+                            <constraint firstItem="9qH-dt-uwh" firstAttribute="top" secondItem="zbH-Tb-ajB" secondAttribute="bottom" constant="15" id="zbR-30-ETh"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="celciusBtn" destination="41L-KJ-qET" id="yF0-Lx-5Kq"/>
                         <outlet property="cityNameLbl" destination="9qH-dt-uwh" id="km4-oq-mE6"/>
                         <outlet property="countryLbl" destination="kOT-6Z-i8o" id="Nwc-b6-sDl"/>
                         <outlet property="descLbl" destination="YJ2-IO-2TW" id="YuH-uE-vBZ"/>
+                        <outlet property="farenheitBtn" destination="IJk-r2-IO8" id="PL7-J8-Jjx"/>
+                        <outlet property="humidityLbl" destination="zFr-uf-Lne" id="5xc-wf-rmA"/>
                         <outlet property="iconContainerView" destination="bis-ow-Lep" id="Nrz-em-oOG"/>
+                        <outlet property="pressLbl" destination="qvq-3L-yKv" id="QnG-wT-oQi"/>
+                        <outlet property="sunriseLbl" destination="wIK-MT-wgL" id="aAC-eH-lIc"/>
+                        <outlet property="sunsetLbl" destination="qKw-du-IQu" id="bqW-QY-8Z6"/>
                         <outlet property="tempLbl" destination="aGT-tW-GPL" id="lEM-rN-CTN"/>
                     </connections>
                 </viewController>
@@ -230,5 +354,10 @@
     <resources>
         <image name="AD" width="512" height="512"/>
         <image name="BG-start" width="1441" height="1440"/>
+        <image name="Barometer-50" width="50" height="50"/>
+        <image name="Humidity-50" width="50" height="50"/>
+        <image name="Sunrise-64" width="64" height="64"/>
+        <image name="Sunset-64" width="64" height="64"/>
+        <image name="globe-map-grey" width="375" height="360"/>
     </resources>
 </document>

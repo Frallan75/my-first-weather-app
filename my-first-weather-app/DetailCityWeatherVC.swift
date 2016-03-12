@@ -17,11 +17,13 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var countryLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var tempLbl: UILabel!
-    //    @IBOutlet weak var pressLbl: UILabe§  l!
-    //    @IBOutlet weak var humidityLbl: UILabel!
+    @IBOutlet weak var pressLbl: UILabel!
+    @IBOutlet weak var humidityLbl: UILabel!
     //    @IBOutlet weak var cloudsLbl: UILabel!
-    //    @IBOutlet weak var suriseLbl: UILabel!
-    //    @IBOutlet weak var sunsetLbl: UILabel!
+    @IBOutlet weak var sunriseLbl: UILabel!
+    @IBOutlet weak var sunsetLbl: UILabel!
+    @IBOutlet weak var farenheitBtn: UIButton!
+    @IBOutlet weak var celciusBtn: UIButton!
     
     
     var detailCity = CityWeather()
@@ -34,6 +36,9 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
         setupSwipe()
         setupWKWebViewer()
         fetchDetails(id)
+        
+        celciusBtn.enabled = false
+        celciusBtn.alpha = 0.3
         
     }
     
@@ -54,7 +59,12 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
                 self.cityNameLbl.text = self.detailCity.cityName
                 self.countryLbl.text = self.detailCity.country
                 self.descLbl.text = self.detailCity.desc
-                self.tempLbl.text = "\(self.detailCity.temp) C"
+                self.tempLbl.text = "\(String(format: "%.1f", self.detailCity.temp))˚C"
+                self.pressLbl.text = "\(self.detailCity.press) pscal"
+                self.humidityLbl.text = "\(self.detailCity.humidity) %"
+                self.sunriseLbl.text = "\(self.detailCity.sunrise)"
+                self.sunsetLbl.text = "\(self.detailCity.sunset)"
+                
                 self.showIcon()
             }
         }
@@ -78,5 +88,27 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
     
     func dismissView() {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func tempBtnPressed(sender: UIButton) {
+        
+        let newTemp = detailCity.changeMetricInch(sender.tag)
+        
+        if sender.tag == 0 {
+            farenheitBtn.enabled = false
+            farenheitBtn.alpha = 0.3
+            tempLbl.text = newTemp
+            celciusBtn.enabled = true
+            celciusBtn.alpha = 1.0
+            
+        }
+        else if sender.tag == 1 {
+            celciusBtn.enabled = false
+            celciusBtn.alpha = 0.3
+            tempLbl.text = newTemp
+            farenheitBtn.enabled = true
+            farenheitBtn.alpha = 1.0
+        }
+        
     }
 }

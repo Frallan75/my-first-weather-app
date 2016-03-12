@@ -21,8 +21,8 @@ class CityWeather {
     private var _press: Double!
     private var _humidity: Int!
     private var _clouds: Int!
-    private var _sunrise: Int!
-    private var _sunset: Int!
+    private var _sunrise: String!
+    private var _sunset: String!
     private var _error: Bool!
 
     var searchArrayCity: [String] = [""]
@@ -92,16 +92,16 @@ class CityWeather {
         return _humidity
     }
     
-    var sunrise: Int {
+    var sunrise: String {
         if _sunrise == nil {
-            _sunrise = 0
+            _sunrise = ""
         }
         return _sunrise
     }
     
-    var sunset: Int {
+    var sunset: String {
         if _sunset == nil {
-            _sunset = 0
+            _sunset = ""
         }
         return _sunset
     }
@@ -249,6 +249,16 @@ class CityWeather {
                             if let country = sys["country"] as? String {
                                 self._country = country
                             }
+                            
+                            if let sunrise = sys["sunrise"] as? Int {
+                                
+                                self._sunrise = self.unixTimeConvertion(Double(sunrise))
+                            }
+                            
+                            if let sunset = sys["sunset"] as? Int {
+                               
+                                self._sunset = self.unixTimeConvertion(Double(sunset))
+                            }
                         }
                         
                         completion()
@@ -259,4 +269,28 @@ class CityWeather {
             }
             }.resume()
     }
+    
+    func unixTimeConvertion(unixTime: Double) -> String {
+        
+        let time = NSDate(timeIntervalSince1970: unixTime)
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        return timeFormatter.stringFromDate(time)
+    }
+    
+    func changeMetricInch(sender: Int) -> String {
+    
+        var stringTempToReturn = ""
+        
+        if sender == 0 {
+            
+            stringTempToReturn = "\(String(format: "%.0f", self._temp * (9.0/5.0) + 32.0))˚F"
+        }
+        else if sender == 1 {
+            
+            stringTempToReturn = "\(String(format: "%.1f", self._temp))˚C"        }
+        
+        return stringTempToReturn
+    }
 }
+
