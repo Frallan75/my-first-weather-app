@@ -122,6 +122,8 @@ class CityWeather {
         
         let readyForNSURL = url.stringByReplacingOccurrencesOfString(" ", withString: "")
         
+        print(readyForNSURL)
+        
         let nsUrl = NSURL(string: readyForNSURL)!
         
         let request = NSURLRequest(URL: nsUrl)
