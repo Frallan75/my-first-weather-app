@@ -19,21 +19,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y + view.frame.size.height, view.frame.size.width, view.frame.height * 0.8)
+        tableView.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y + view.frame.size.height, width: view.frame.size.width, height: view.frame.height * 0.8)
         view.addSubview(tableView)
         
         searchTxtFeild.delegate = self
-        searchTxtFeild.returnKeyType = UIReturnKeyType.Go
-        searchTxtFeild.autocorrectionType = .No
-        searchTxtFeild.keyboardType = .ASCIICapable
+        searchTxtFeild.returnKeyType = UIReturnKeyType.go
+        searchTxtFeild.autocorrectionType = .no
+        searchTxtFeild.keyboardType = .asciiCapable
        
     }
     
-    @IBAction func dismissViewBtnPressed(sender: UIButton) {
+    @IBAction func dismissViewBtnPressed(_ sender: UIButton) {
         
         dismissView()
     }
@@ -46,14 +46,14 @@ class ViewController: UIViewController {
         
         tableView.reloadData()
         
-        if searchTxtFeild.isFirstResponder() && searchTxtFeild.text != nil && searchTxtFeild.text != "" {
+        if searchTxtFeild.isFirstResponder && searchTxtFeild.text != nil && searchTxtFeild.text != "" {
             
             city.searchCity(searchTxtFeild.text!) { () -> () in
                 print(self.city.sunrise)
                 
                 if !self.city.error {
                     
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         print("in dispatch row 1")
                         self.numberOfRows = self.city.searchArrayCity.count
                         print(self.city.searchArrayCity[0])
@@ -67,10 +67,10 @@ class ViewController: UIViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailVC" {
             
-            if let vc = segue.destinationViewController as? DetailCityWeatherVC {
+            if let vc = segue.destination as? DetailCityWeatherVC {
                 vc.id = sender as? Int
             }
         }
@@ -80,9 +80,9 @@ class ViewController: UIViewController {
         
         let viewToShow = self.tableView
         
-        UIView.animateWithDuration(0.6) {
-            viewToShow.frame = CGRectMake(viewToShow.frame.origin.x, viewToShow.frame.origin.y - viewToShow.frame.height, viewToShow.frame.size.width, viewToShow.frame.size.height)
-        }
+        UIView.animate(withDuration: 0.6, animations: {
+            viewToShow?.frame = CGRect(x: (viewToShow?.frame.origin.x)!, y: (viewToShow?.frame.origin.y)! - (viewToShow?.frame.height)!, width: (viewToShow?.frame.size.width)!, height: (viewToShow?.frame.size.height)!)
+        }) 
     }
     
     func dismissView() {
@@ -91,18 +91,18 @@ class ViewController: UIViewController {
         
         self.searchTxtFeild.text = ""
         
-        UIView.animateWithDuration(0.6) {
-            viewToDismiss.frame = CGRectMake(viewToDismiss.frame.origin.x, viewToDismiss.frame.origin.y + viewToDismiss.frame.height, viewToDismiss.frame.size.width, viewToDismiss.frame.size.height)
-        }
+        UIView.animate(withDuration: 0.6, animations: {
+            viewToDismiss?.frame = CGRect(x: (viewToDismiss?.frame.origin.x)!, y: (viewToDismiss?.frame.origin.y)! + (viewToDismiss?.frame.height)!, width: (viewToDismiss?.frame.size.width)!, height: (viewToDismiss?.frame.size.height)!)
+        }) 
     }
     
     func presentAlert() {
         
-        let myAlert = UIAlertController(title: "Ooooops!", message: "The server coudn't find your city, please try again!", preferredStyle: UIAlertControllerStyle.Alert)
+        let myAlert = UIAlertController(title: "Ooooops!", message: "The server coudn't find your city, please try again!", preferredStyle: UIAlertControllerStyle.alert)
         
-        myAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        myAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
-        presentViewController(myAlert, animated: true) { () -> Void in
+        present(myAlert, animated: true) { () -> Void in
             self.searchTxtFeild.text = ""
         }
     }
@@ -111,17 +111,17 @@ class ViewController: UIViewController {
 //TABLEVIEW
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return city.searchArrayCity.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCellWithIdentifier("CityCell") as? CityCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell") as? CityCell {
             
             print("\(city.searchArrayCity[indexPath.row])")
             cell.titleLbl.text = city.searchArrayCity[indexPath.row]
@@ -131,41 +131,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return CityCell()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let id = city.searchArrayId[indexPath.row]
         print(id)
-        performSegueWithIdentifier("detailVC", sender: id)
+        performSegue(withIdentifier: "detailVC", sender: id)
     }
-    
-//    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        
-//        if section == 0 {
-//            
-//            return 35.0
-//        }
-//    return 0.0
-//    }
-//    
-////    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-////       
-////        if section == 0 {
-////            
-////            let myHeaderView = UIButton()
-////            myHeaderView.sizeToFit()
-////            myHeaderView.backgroundColor = UIColor(patternImage: UIImage(named: "AD.png")!)
-////            return myHeaderView
-////            
-////        }
-////        
-////        return UIView()
-////    }
 }
 
 //UITEXTFIELD
 extension ViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         fetchSearch()
         self.view.endEditing(true)

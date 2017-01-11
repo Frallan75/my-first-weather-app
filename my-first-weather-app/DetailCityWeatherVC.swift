@@ -37,25 +37,25 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
         setupWKWebViewer()
         fetchDetails(id)
         
-        celciusBtn.enabled = false
+        celciusBtn.isEnabled = false
         celciusBtn.alpha = 0.3
         
     }
     
     func setupSwipe() {
         
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: "dismissView")
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(DetailCityWeatherVC.dismissView))
         
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
         
         view.addGestureRecognizer(swipeRight)
     }
     
-    func fetchDetails(id: Int) {
+    func fetchDetails(_ id: Int) {
         
         detailCity.detailWeather(id) { () -> () in
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.cityNameLbl.text = self.detailCity.cityName
                 self.countryLbl.text = self.detailCity.country
                 self.descLbl.text = self.detailCity.desc
@@ -73,7 +73,7 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
     func setupWKWebViewer() {
         
         iconContainerView.addSubview(urlViewer)
-        let frame = CGRectMake(0, 0, iconContainerView.frame.width, iconContainerView.frame.height)
+        let frame = CGRect(x: 0, y: 0, width: iconContainerView.frame.width, height: iconContainerView.frame.height)
         urlViewer.frame = frame
         
     }
@@ -81,32 +81,32 @@ class DetailCityWeatherVC: UIViewController, UIGestureRecognizerDelegate {
     func showIcon() {
         
         let url = "\(BASE_URL_ICON)\(self.detailCity.icon).png"
-        let nsUrl = NSURL(string: url)!
-        let requestForIcon = NSURLRequest(URL: nsUrl)
-        self.urlViewer.loadRequest(requestForIcon)
+        let nsUrl = URL(string: url)!
+        let requestForIcon = URLRequest(url: nsUrl)
+        self.urlViewer.load(requestForIcon)
     }
     
     func dismissView() {
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func tempBtnPressed(sender: UIButton) {
+    @IBAction func tempBtnPressed(_ sender: UIButton) {
         
         let newTemp = detailCity.changeMetricInch(sender.tag)
         
         if sender.tag == 0 {
-            farenheitBtn.enabled = false
+            farenheitBtn.isEnabled = false
             farenheitBtn.alpha = 0.3
             tempLbl.text = newTemp
-            celciusBtn.enabled = true
+            celciusBtn.isEnabled = true
             celciusBtn.alpha = 1.0
             
         }
         else if sender.tag == 1 {
-            celciusBtn.enabled = false
+            celciusBtn.isEnabled = false
             celciusBtn.alpha = 0.3
             tempLbl.text = newTemp
-            farenheitBtn.enabled = true
+            farenheitBtn.isEnabled = true
             farenheitBtn.alpha = 1.0
         }
         

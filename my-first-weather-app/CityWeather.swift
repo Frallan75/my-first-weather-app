@@ -11,20 +11,20 @@ import Alamofire
 
 class CityWeather {
     
-    private var _cityName: String!
-    private var _country: String!
-    private var _lon: String!
-    private var _lat: String!
-    private var _desc: String!
-    private var _icon: String!
-    private var _temp: Double!
-    private var _press: Double!
-    private var _humidity: Int!
-    private var _clouds: Int!
-    private var _sunrise: String!
-    private var _sunset: String!
-    private var _error: Bool!
-
+    fileprivate var _cityName: String!
+    fileprivate var _country: String!
+    fileprivate var _lon: String!
+    fileprivate var _lat: String!
+    fileprivate var _desc: String!
+    fileprivate var _icon: String!
+    fileprivate var _temp: Double!
+    fileprivate var _press: Double!
+    fileprivate var _humidity: Int!
+    fileprivate var _clouds: Int!
+    fileprivate var _sunrise: String!
+    fileprivate var _sunset: String!
+    fileprivate var _error: Bool!
+    
     var searchArrayCity: [String] = [""]
     var searchArrayCountry: [String] = [""]
     var searchArrayId: [Int] = []
@@ -110,44 +110,45 @@ class CityWeather {
         return _error
     }
     
-    func searchCity(citySearchString: String, completion: () -> ()) {
+    func searchCity(_ citySearchString: String, completion: @escaping () -> ()) {
         
         self._error = false
         
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
         
         let rawUrl = "\(BASE_URL_FIND)\(citySearchString)\(URL_TEST_APPID)"
-    
-        let url = rawUrl.stringByFoldingWithOptions(.DiacriticInsensitiveSearch, locale: NSLocale.currentLocale())
         
-        let readyForNSURL = url.stringByReplacingOccurrencesOfString(" ", withString: "")
+        let url = rawUrl.folding(options: .diacriticInsensitive, locale: Locale.current)
+        
+        let readyForNSURL = url.replacingOccurrences(of: " ", with: "")
         
         print(readyForNSURL)
         
-        let nsUrl = NSURL(string: readyForNSURL)!
+        let nsUrl = URL(string: readyForNSURL)!
         
-        let request = NSURLRequest(URL: nsUrl)
+        let request = URLRequest(url: nsUrl)
         
-        session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        session.dataTask(with: request as URLRequest) {
+            data, response, error in
             
-            if let result = data {
+        if let result = data {
             
                 do {
-                    let json = try NSJSONSerialization.JSONObjectWithData(result, options: NSJSONReadingOptions.AllowFragments)
+                    let json = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments)
                     
                     if let dict = json as? Dictionary<String, AnyObject> {
                         
                         print("in json")
                         
-                        if let count = dict["count"] as? Int where count > 0 {
+                        if let count = dict["count"] as? Int, count > 0 {
                             print("detta är count \(count)")
                             
-                            if let list = dict["list"] as? [Dictionary<String, AnyObject>] where list.count > 0 {
+                            if let list = dict["list"] as? [Dictionary<String, AnyObject>], list.count > 0 {
                                 
                                 print("in list")
                                 print(list.count)
                                 
-                                for var x = 0; x < list.count; x++ {
+                                for x in 0 ..< list.count {
                                     
                                     if let cityName = list[x]["name"] as? String {
                                         
@@ -168,39 +169,40 @@ class CityWeather {
                                     }
                                 }
                             }
-                          
+                            
                         }
                         else {
                             print("in else hansli")
                             self._error = true
                         }
                     }
-                      completion()
+                    completion()
                 } catch {
-                     self._error = true
+                    self._error = true
                 }
-                
             }
-            }.resume()
+        } .resume()
     }
     
-    func detailWeather(id: Int, completion: () -> ()) {
+    func detailWeather(_ id: Int, completion: @escaping () -> ()) {
         print("in detail request")
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
         
         let url = "\(BASE_URL_ID)\(id)\(FINISH_URL_ID)"
         print(url)
-        let nsUrl = NSURL(string: url)!
+        let nsUrl = URL(string: url)!
         
-        let request = NSURLRequest(URL: nsUrl)
+        let request = URLRequest(url: nsUrl)
         
-        session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        session.dataTask(with: request, completionHandler: {
+            
+            data, response, error in
             
             if let results = data {
                 print("in detail results")
                 do {
                     
-                    let json = try NSJSONSerialization.JSONObjectWithData(results, options: NSJSONReadingOptions.AllowFragments)
+                    let json = try JSONSerialization.jsonObject(with: results, options: JSONSerialization.ReadingOptions.allowFragments)
                     
                     print("in json try")
                     
@@ -258,7 +260,7 @@ class CityWeather {
                             }
                             
                             if let sunset = sys["sunset"] as? Int {
-                               
+                                
                                 self._sunset = self.unixTimeConvertion(Double(sunset))
                             }
                         }
@@ -269,19 +271,19 @@ class CityWeather {
                     print(err.debugDescription)
                 }
             }
-            }.resume()
+        }) .resume()
     }
     
-    func unixTimeConvertion(unixTime: Double) -> String {
+    func unixTimeConvertion(_ unixTime: Double) -> String {
         
-        let time = NSDate(timeIntervalSince1970: unixTime)
-        let timeFormatter = NSDateFormatter()
+        let time = Date(timeIntervalSince1970: unixTime)
+        let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm"
-        return timeFormatter.stringFromDate(time)
+        return timeFormatter.string(from: time)
     }
     
-    func changeMetricInch(sender: Int) -> String {
-    
+    func changeMetricInch(_ sender: Int) -> String {
+        
         var stringTempToReturn = ""
         
         if sender == 0 {
